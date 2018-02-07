@@ -1,0 +1,19 @@
+{
+  "name": "project-werb",
+  "version": "1.0.0",
+  "description": "A smart To-Do lister.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bayes": "0.0.7",
+    "cookie-session": "^2.0.0-beta.3",
+    "express": "^4.16.2",
+    "jquery": "^3.3.1",
+    "knex": "^0.14.2",
+    "pg": "^7.4.1"
+  }
+}
