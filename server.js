@@ -54,7 +54,7 @@ const registerUser = function(req, res){
   let email = req.body.email;
   let password = req.body.password;
   let operation = knex("users").insert({"email": email, "password": password});
-  operation.asCallback((error, rows) => {
+  operation.then((rows) => {
     res.redirect("/login");
   });
 };
@@ -68,8 +68,10 @@ const postNote = function(req, res){
   let isoDate = date.toISOString();
   let created_at = isoDate;
   let operation = knex("notes").insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
-  operation.asCallback((error, rows) => {
+  operation.then((rows) => {
     res.redirect("/testForm");
+  }).catch((error) => {
+    console.error("error: ", error);
   });
 };
 
@@ -78,9 +80,11 @@ const readNote = function(req, res){
   let user_id = req.params.user_id;
   let category = req.params.category;
   let operation = knex("notes").select("text").from("notes").where("user_id", user_id).andWhere("category", category);
-  operation.asCallback((error, rows) => {
+  operation.then((rows) => {
     console.log("notes read: ", rows);
     res.send(rows);
+  }).catch((error) => {
+    console.error("error: ", error);
   });
 };
 
@@ -92,22 +96,21 @@ const loginUser = function(req, res){
     if(rows.length > 0){
       //if the login credentials are correct, log the user in.
       req.session.user_id = rows[0].user_id;
-      console.log("session: ", req.session.user_id);
       res.send();
     }else{
       //if the login credentials are invalid
-      console.log("not found");
+      console.log("Account not found");
       res.status(404).send();
     }
+  }).catch((error) => {
+    console.error("error: ", error);
   });
 };
 
 //logs the user out by ending the user's session
 const logoutUser = function(req, res){
   //log user out
-  console.log("before: ", req.session.user_id);
   req.session.user_id = null;
-  console.log("session: ", req.session.user_id);
   res.send();
 };
 
