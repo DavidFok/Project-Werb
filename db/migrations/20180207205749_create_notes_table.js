@@ -1,7 +1,7 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable('notes', function(table){
-    table.increments('note_id');
+    table.increments('note_id').primary();
     table.integer('user_id');
     table.string('category');
     table.string('text');
