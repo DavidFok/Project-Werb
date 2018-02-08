@@ -38,10 +38,11 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
-app.get('/testForm', (req, res) => {
-  res.sendFile("public/testForm.html", {root: __dirname});
-});
+// ===================================================================================================================
+// ROUTING
+// ===================================================================================================================
 
+//adds user entry to users table
 const registerUser = function(req, res){
   let email = req.body.email;
   let password = req.body.password;
@@ -51,13 +52,13 @@ const registerUser = function(req, res){
   });
 };
 
+//add note entry to notes table
 const postNote = function(req, res){
   let text = req.body.text;
   let category = req.body.category;
   let user_id = req.body.userId;
   let date = new Date();
   let isoDate = date.toISOString();
-  console.log("isoDate: ", isoDate);
   let created_at = isoDate;
   let operation = knex('notes').insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
   operation.asCallback((error, rows) => {
@@ -65,6 +66,7 @@ const postNote = function(req, res){
   });
 };
 
+//reads notes from notes table, queried by user id and category
 const readNote = function(req, res){
   let user_id = req.params.user_id;
   let category = req.params.category;
@@ -74,6 +76,15 @@ const readNote = function(req, res){
     res.send(rows);
   });
 };
+
+// ===================================================================================================================
+// ROUTING
+// ===================================================================================================================
+
+//routing to test form
+app.get('/testForm', (req, res) => {
+  res.sendFile("public/testForm.html", {root: __dirname});
+});
 
 //logs user to table 'users'
 app.post('/register', (req, res) => {
@@ -89,7 +100,6 @@ app.post('/note', (req, res) => {
 app.get('/notes/:user_id/:category', (req, res) => {
   readNote(req, res);
 });
-
 
 // Home page
 app.get("/", (req, res) => {
