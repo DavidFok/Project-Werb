@@ -13,11 +13,10 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require("morgan");
 const knexLogger  = require("knex-logger");
-const cookieSession = require('cookie-session');
-
+const cookieSession = require("cookie-session");
 //initializing cookieSession
 app.use(cookieSession({
-  name : 'session',
+  name : "session",
   keys : process.env.COOKIE_TOKEN,
   maxAge: 24 * 60 * 60 * 1000
 }));
@@ -54,9 +53,9 @@ app.use("/api/users", usersRoutes(knex));
 const registerUser = function(req, res){
   let email = req.body.email;
   let password = req.body.password;
-  let operation = knex('users').insert({"email": email, "password": password});
+  let operation = knex("users").insert({"email": email, "password": password});
   operation.asCallback((error, rows) => {
-    res.redirect('/testForm');
+    res.redirect("/login");
   });
 };
 
@@ -68,9 +67,9 @@ const postNote = function(req, res){
   let date = new Date();
   let isoDate = date.toISOString();
   let created_at = isoDate;
-  let operation = knex('notes').insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
+  let operation = knex("notes").insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
   operation.asCallback((error, rows) => {
-    res.redirect('/testForm');
+    res.redirect("/testForm");
   });
 };
 
@@ -78,9 +77,9 @@ const postNote = function(req, res){
 const readNote = function(req, res){
   let user_id = req.params.user_id;
   let category = req.params.category;
-  let operation = knex('notes').select('text').from('notes').where('user_id', user_id).andWhere('category', category);
+  let operation = knex("notes").select("text").from("notes").where("user_id", user_id).andWhere("category", category);
   operation.asCallback((error, rows) => {
-    console.log('notes read: ', rows);
+    console.log("notes read: ", rows);
     res.send(rows);
   });
 };
@@ -88,7 +87,7 @@ const readNote = function(req, res){
 //logs user in by searching the user database for matching credentials. If the matching credentials are found,
 //the user is given a session
 const loginUser = function(req, res){
-  let operation = knex('users').select('email', 'user_id').from('users').where('email', req.body.email).andWhere('password', req.body.password);
+  let operation = knex("users").select("email", "user_id").from("users").where("email", req.body.email).andWhere("password", req.body.password);
   operation.then((rows) => {
     if(rows.length > 0){
       //if the login credentials are correct, log the user in.
@@ -116,32 +115,36 @@ const logoutUser = function(req, res){
 // ===================================================================================================================
 
 //routing to test form
-app.get('/testForm', (req, res) => {
+app.get("/testForm", (req, res) => {
   res.sendFile("public/testForm.html", {root: __dirname});
 });
 
 //logs user to table 'users'
-app.post('/register', (req, res) => {
+app.post("/register", (req, res) => {
   registerUser(req, res);
 });
 
 //log user in
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   loginUser(req, res);
 });
 
+app.get("/login", (req, res) => {
+  res.sendFile("public/login.html", {root: __dirname});
+});
+
 //log user out
-app.post('/logout', (req, res) => {
+app.post("/logout", (req, res) => {
   logoutUser(req, res);
-})
+});
 
 //logs note into table 'notes'
-app.post('/note', (req, res) => {
+app.post("/note", (req, res) => {
   postNote(req, res);
 });
 
 //reads notes from category and user specified
-app.get('/notes/:user_id/:category', (req, res) => {
+app.get("/notes/:user_id/:category", (req, res) => {
   readNote(req, res);
 });
 
