@@ -134,7 +134,7 @@ classifier.learn('Aberdeen Centre has good asian stuff', 'buy');
 
 
 
-function inSort (input) {
+function entry (input) {
   return classifier.categorize(input);
 }
 
@@ -147,7 +147,7 @@ function inSort (input) {
 
 
 module.exports = {
-  sort: inSort,
+  sort: entry,
 
 }
 // watch keywords - watch, see, movie, film, tv, show, video, documentary
