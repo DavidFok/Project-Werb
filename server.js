@@ -17,7 +17,7 @@ const cookieSession = require("cookie-session");
 //initializing cookieSession
 app.use(cookieSession({
   name : "session",
-  keys : process.env.COOKIE_TOKEN,
+  keys : [process.env.COOKIE_TOKEN],
   maxAge: 24 * 60 * 60 * 1000
 }));
 
@@ -105,6 +105,7 @@ const loginUser = function(req, res){
 //logs the user out by ending the user's session
 const logoutUser = function(req, res){
   //log user out
+  console.log("before: ", req.session.user_id);
   req.session.user_id = null;
   console.log("session: ", req.session.user_id);
   res.send();
