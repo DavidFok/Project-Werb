@@ -13,6 +13,14 @@ const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require("morgan");
 const knexLogger  = require("knex-logger");
+const cookieSession = require('cookie-session');
+
+//initializing cookieSession
+app.use(cookieSession({
+  name : 'session',
+  keys : process.env.COOKIE_TOKEN,
+  maxAge: 24 * 60 * 60 * 1000
+}));
 
 // Seperated Routes for each Resource
 const usersRoutes = require("./routes/users");
@@ -39,7 +47,7 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 // ===================================================================================================================
-// ROUTING
+// FUNCTIONS
 // ===================================================================================================================
 
 //adds user entry to users table
@@ -77,6 +85,32 @@ const readNote = function(req, res){
   });
 };
 
+//logs user in by searching the user database for matching credentials. If the matching credentials are found,
+//the user is given a session
+const loginUser = function(req, res){
+  let operation = knex('users').select('email', 'user_id').from('users').where('email', req.body.email).andWhere('password', req.body.password);
+  operation.then((rows) => {
+    if(rows.length > 0){
+      //if the login credentials are correct, log the user in.
+      req.session.user_id = rows[0].user_id;
+      console.log("session: ", req.session.user_id);
+      res.send();
+    }else{
+      //if the login credentials are invalid
+      console.log("not found");
+      res.status(404).send();
+    }
+  });
+};
+
+//logs the user out by ending the user's session
+const logoutUser = function(req, res){
+  //log user out
+  req.session.user_id = null;
+  console.log("session: ", req.session.user_id);
+  res.send();
+};
+
 // ===================================================================================================================
 // ROUTING
 // ===================================================================================================================
@@ -90,6 +124,16 @@ app.get('/testForm', (req, res) => {
 app.post('/register', (req, res) => {
   registerUser(req, res);
 });
+
+//log user in
+app.post('/login', (req, res) => {
+  loginUser(req, res);
+});
+
+//log user out
+app.post('/logout', (req, res) => {
+  logoutUser(req, res);
+})
 
 //logs note into table 'notes'
 app.post('/note', (req, res) => {

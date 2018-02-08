@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Document</title>
+  <title>Test Form</title>
 </head>
 <body>
   <h3>register form</h3>
@@ -21,7 +21,21 @@
     <input type="text" id="userIdForm" name="userId">
     <label for="textForm">text</label>
     <input type="text" id="textForm" name="text">
-    <button>submit</button>
+    <button>Submit</button>
+  </form>
+
+  <h3>login form</h3>
+  <form action="/login" method="POST">
+    <label for="email">Email</label>
+    <input type="text" id="emailForm" name="email">
+    <label for="passwordForm">Password</label>
+    <input type="password" id="passwordForm" name="password">
+    <button>Login</button>
+  </form>
+
+  <h3>logout form</h3>
+  <form action="logout" method="POST">
+    <button>Logout</button>
   </form>
 </body>
 </html>
