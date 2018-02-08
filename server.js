@@ -38,6 +38,10 @@ app.use(express.static("public"));
 // Mount all resource routes
 app.use("/api/users", usersRoutes(knex));
 
+app.get('/testForm', (req, res) => {
+  res.sendFile("public/testForm.html", {root: __dirname});
+});
+
 // Home page
 app.get("/", (req, res) => {
   res.sendFile("public/login.html", {root: __dirname});
