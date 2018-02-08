@@ -37,7 +37,7 @@ classifier.learn('watch the Purge', 'watch');
 classifier.learn('TV Show sbout doctors House', 'watch');
 classifier.learn('watch The Office on youtube', 'watch');
 classifier.learn('to see Bowling for Columbine documentary','watch');
-classifier.learn('watch youtube video thomas the tank engine goth','watch');
+classifier.learn('watch youtube video chicken attack','watch');
 classifier.learn('see the documentary Man on Wire','watch');
 classifier.learn('youtube pewdiepie','watch');
 classifier.learn('philip defranco youtuber','watch');
@@ -134,6 +134,9 @@ classifier.learn('Aberdeen Centre has good asian stuff', 'buy');
 
 
 
+function inSort (input) {
+  return classifier.categorize(input);
+}
 
 
 
@@ -141,22 +144,36 @@ classifier.learn('Aberdeen Centre has good asian stuff', 'buy');
 
 
 
-// Test Watch
-console.log('should be -watch:', classifier.categorize(''));
-console.log('should be -watch:', classifier.categorize(''));
-console.log('should be -watch:', classifier.categorize(''));
 
-// Test Eat
-console.log('should be -eat:', classifier.categorize(''));
-console.log('should be -eat:', classifier.categorize(''));
-console.log('should be -eat:', classifier.categorize(''));
 
-// Test Read
-console.log('should be -read:', classifier.categorize(''));
-console.log('should be -read:', classifier.categorize(''));
-console.log('should be -read:', classifier.categorize(''));
+module.exports = {
+  sort: inSort,
 
-// Test buy
-console.log('should be -buy:', classifier.categorize(''));
-console.log('should be -buy:', classifier.categorize(''));
-console.log('should be -buy:', classifier.categorize(''));
+}
+// watch keywords - watch, see, movie, film, tv, show, video, documentary
+
+// Eat keywords - eat, yummy, restaurant, food, dinner, lunch, cafe
+
+// Read keywords - read, book, magazine, article, novel, journal, writing, author
+
+// Buy keywords - buy, get, purchase, wtb, store, centre, amazon
+
+// // Test Watch
+// console.log('should be -watch:', classifier.categorize('watch supernatural'));
+// console.log('should be -watch:', classifier.categorize('watch stranger things'));
+// console.log('should be -watch:', classifier.categorize('watch Letters from Iwo Jima'));
+
+// // Test Eat
+// console.log('should be -eat:', classifier.categorize('have Afghan Restaurant'));
+// console.log('should be -eat:', classifier.categorize('Go to Mexican Amigos'));
+// console.log('should be -eat:', classifier.categorize("Try out Vinnie Zucchini's"));
+
+// // Test Read
+// console.log('should be -read:', classifier.categorize("Read up on Aristotle's ethics"));
+// console.log('should be -read:', classifier.categorize("Read Camus' The Rebel"));
+// console.log('should be -read:', classifier.categorize("Read Brandon Sanderson's latest novel"));
+
+// // Test buy
+// console.log('should be -buy:', classifier.categorize("Get Ticket to Toronto"));
+// console.log('should be -buy:', classifier.categorize('Buy pills for dog'));
+// console.log('should be -buy:', classifier.categorize("Buy CO2"));
