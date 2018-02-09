@@ -56,7 +56,12 @@ const registerUser = function(req, res){
   let password = req.body.password;
   let operation = knex("users").insert({"email": email, "password": password});
   operation.then((rows) => {
-    res.redirect("/login");
+    let user_id = knex("users").select('user_id').from('users').where('email', email);
+    user_id.then((rows) => {
+      console.log("rows: ", rows[0]);
+      req.session.user_id = rows[0].user_id;
+      res.redirect("/app");
+    });
   });
 };
 
@@ -72,7 +77,7 @@ const postNote = function(req, res){
     let created_at = isoDate;
     let operation = knex("notes").insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
     operation.then((rows) => {
-      res.redirect("/testForm");
+      res.redirect("/app");
     }).catch((error) => {
       console.error("error: ", error);
     });
@@ -109,7 +114,7 @@ const loginUser = function(req, res){
     if(rows.length > 0){
       //if the login credentials are correct, log the user in.
       req.session.user_id = rows[0].user_id;
-      res.send();
+      res.redirect('/app')
     }else{
       //if the login credentials are invalid
       console.log("Account not found");
@@ -124,12 +129,22 @@ const loginUser = function(req, res){
 const logoutUser = function(req, res){
   //log user out
   req.session.user_id = null;
-  res.send();
+  res.redirect('/login');
 };
 
 // ===================================================================================================================
 // ROUTING
 // ===================================================================================================================
+
+//get app page
+app.get('/app', (req, res) => {
+  if (req.session.user_id){
+    res.sendFile('public/app.html', {root: __dirname});
+  } else {
+    //redirect to login screen if not logged in
+    res.redirect('/login');
+  }
+});
 
 //routing to test form
 app.get("/testForm", (req, res) => {
