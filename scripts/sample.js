@@ -18,6 +18,7 @@
 var AWS = require('aws-sdk');
 var uuid = require('node-uuid');
 
+AWS.config.correctClockSkew = true;
 AWS.config.loadFromPath('./awscreds.json');
 
 AWS.config.apiVersions = {

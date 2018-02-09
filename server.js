@@ -9,6 +9,7 @@ const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
 const app         = express();
 
+const sort        = require("./scripts/sorter");
 const knexConfig  = require("./knexfile");
 const knex        = require("knex")(knexConfig[ENV]);
 const morgan      = require("morgan");
@@ -62,7 +63,7 @@ const registerUser = function(req, res){
 //add note entry to notes table
 const postNote = function(req, res){
   let text = req.body.text;
-  let category = req.body.category;
+  let category = sort.entry(text);
   let user_id = req.body.userId;
   let date = new Date();
   let isoDate = date.toISOString();
