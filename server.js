@@ -62,31 +62,43 @@ const registerUser = function(req, res){
 
 //add note entry to notes table
 const postNote = function(req, res){
-  let text = req.body.text;
-  let category = sort.entry(text);
-  let user_id = req.body.userId;
-  let date = new Date();
-  let isoDate = date.toISOString();
-  let created_at = isoDate;
-  let operation = knex("notes").insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
-  operation.then((rows) => {
-    res.redirect("/testForm");
-  }).catch((error) => {
-    console.error("error: ", error);
-  });
+  if (req.session.user_id){
+    //if logged in
+    let text = req.body.text;
+    let category = sort.entry(text);
+    let user_id = req.session.user_id;
+    let date = new Date();
+    let isoDate = date.toISOString();
+    let created_at = isoDate;
+    let operation = knex("notes").insert({"user_id": user_id, "category": category, "text": text, "created_at": isoDate});
+    operation.then((rows) => {
+      res.redirect("/testForm");
+    }).catch((error) => {
+      console.error("error: ", error);
+    });
+  } else {
+    //if not logged in
+    res.redirect('/login');
+  }
 };
 
 //reads notes from notes table, queried by user id and category
 const readNote = function(req, res){
-  let user_id = req.params.user_id;
-  let category = req.params.category;
-  let operation = knex("notes").select("text").from("notes").where("user_id", user_id).andWhere("category", category);
-  operation.then((rows) => {
-    console.log("notes read: ", rows);
-    res.send(rows);
-  }).catch((error) => {
-    console.error("error: ", error);
-  });
+  if (req.session.user_id){
+    //if logged in
+    let user_id = req.session.user_id;
+    let category = req.params.category;
+    let operation = knex("notes").select("text").from("notes").where("user_id", user_id).andWhere("category", category);
+    operation.then((rows) => {
+      console.log("notes read: ", rows);
+      res.send(rows);
+    }).catch((error) => {
+      console.error("error: ", error);
+    });
+  } else {
+    //if not logged in
+    res.redirect('/login');
+  }
 };
 
 //logs user in by searching the user database for matching credentials. If the matching credentials are found,
@@ -149,7 +161,7 @@ app.post("/note", (req, res) => {
 });
 
 //reads notes from category and user specified
-app.get("/notes/:user_id/:category", (req, res) => {
+app.get("/notes/:category", (req, res) => {
   readNote(req, res);
 });
 
