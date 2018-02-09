@@ -56,7 +56,7 @@ const registerUser = function(req, res){
   let password = req.body.password;
   let operation = knex("users").insert({"email": email, "password": password});
   operation.then((rows) => {
-    let user_id = knex("users").select('user_id').from('users').where('email', email);
+    let user_id = knex().select('user_id').from('users').where('email', email);
     user_id.then((rows) => {
       console.log("rows: ", rows[0]);
       req.session.user_id = rows[0].user_id;
@@ -93,7 +93,7 @@ const readNote = function(req, res){
     //if logged in
     let user_id = req.session.user_id;
     let category = req.params.category;
-    let operation = knex("notes").select("text").from("notes").where("user_id", user_id).andWhere("category", category);
+    let operation = knex().select("text").from("notes").where("user_id", user_id).andWhere("category", category);
     operation.then((rows) => {
       console.log("notes read: ", rows);
       res.send(rows);
@@ -109,7 +109,7 @@ const readNote = function(req, res){
 //logs user in by searching the user database for matching credentials. If the matching credentials are found,
 //the user is given a session
 const loginUser = function(req, res){
-  let operation = knex("users").select("email", "user_id").from("users").where("email", req.body.email).andWhere("password", req.body.password);
+  let operation = knex().select("email", "user_id").from("users").where("email", req.body.email).andWhere("password", req.body.password);
   operation.then((rows) => {
     if(rows.length > 0){
       //if the login credentials are correct, log the user in.
@@ -154,6 +154,11 @@ app.get("/testForm", (req, res) => {
 //logs user to table 'users'
 app.post("/register", (req, res) => {
   registerUser(req, res);
+});
+
+//register page
+app.get("/register", (req, res) => {
+  res.sendFile('public/register.html', {root: __dirname});
 });
 
 //log user in
