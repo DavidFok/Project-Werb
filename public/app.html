@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+  <!-- app CSS -->
+  <link rel="stylesheet" href="/styles/styles.css" type="text/css" />
+
+  <title>werb for you!</title>
+</head>
+
+<body id="app">
+
+    <nav class="navbar navbar-dark" style="background-color: #1A6F77;">
+        <a class="navbar-brand" href="#">werb</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+  
+        <div class="collapse navbar-collapse" id="navbarsExample01">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#">watch</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">eat</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">read</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">buy</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">LOGOUT</a>
+            </li>
+          </ul>
+        </div>
+    </nav>
+
+    <div class="page-add vertical-center">
+    <div class="container">
+      <div class="col-15 align-self-center">
+          <form class="input-group mb-3" action="/note" method="POST">
+              <input name="text" type="text" class="form-control" placeholder="werb" aria-label="Recipient's username" aria-describedby="basic-addon2">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary" type="submit">Save</button>
+              </div>
+            </form>
+          </div>
+        <div class="category-links buttons text-center">
+          <a class="btn btn-primary" href="#" role="button">Watch</a>
+          <a class="btn btn-primary" href="#" role="button">Eat</a>
+          <a class="btn btn-primary" href="#" role="button">Read</a>
+          <a class="btn btn-primary" href="#" role="button">Buy</a>
+        </div> 
+    </div>
+    </div>
+
+  <footer class="footer">
+    <div class="container">
+      <span class="text-muted">About us</span>
+    </div>
+  </footer>
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</body>
+</html>
