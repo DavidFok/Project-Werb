@@ -28,7 +28,7 @@
     "node-uuid": "^1.4.8",
     "pg": "^6.4.2",
     "popper.js": "^1.12.9",
-    "pg": "^6.4.2"
+    "promise": "^8.0.1",
     "skeleton": "^0.1.2"
   },
   "devDependencies": {
