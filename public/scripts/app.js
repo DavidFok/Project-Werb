@@ -20,14 +20,13 @@ $(document).ready(function(){
     $('.saved-item').hide();
     $('.under-nav').hide();
   };
-  //hide category screen;
-  hide_category_screen();
 
-  //creat note element
+  //create note element
   const create_note_element = function(data){
     let noteElement = $('<form>').text(data.text).addClass('item');
     //store dataId in the element
-    noteElement.data("data_id", data.note_id);
+    noteElement.data("note_id", data.note_id);
+    // console.log("Data: ", noteElement.data('note_id'));
     let icon = $('<i>').addClass('material-icons').text('check_circle');
     noteElement.prepend(icon);
     return noteElement;
@@ -73,10 +72,17 @@ $(document).ready(function(){
     loadNotes(renderNotes, category);
   });
 
+  //When a checkmark icon is clicked, get store the note_id of the note that was checked.
+  $('.saved-item').on('click', 'i', function(event){
+    let note_id = $(event.target).parent().data('note_id');
+    $.post("/delete", {"note_id": note_id}, function(){
+      //refresh the notes
+      loadNotes(renderNotes);
+    });
+  });
 
   const loadNotes = function(callback, category){
     $.get(`/notes/${category}`, function(data){
-      console.log("data: ", data);
       callback(data);
     });
   };
@@ -90,22 +96,8 @@ $(document).ready(function(){
     });
   };
 
+  //hide category screen;
+  hide_category_screen();
   loadNotes(renderNotes);
-
-  //   const renderTweets = function(data){
-  //   $('.tweets-container').empty();
-  //   data.forEach(function(user, index){
-  //     let tweet = createTweetElement(user);
-  //     $('.tweets-container').prepend(tweet);
-  //   });
-  // };
-
-  // //calls tweet data from server
-  // const loadTweets = function(callback){
-  //   $.get('/tweets', function(data){
-  //     callback(data);
-  //   });
-  // };
-
 });
 
