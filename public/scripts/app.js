@@ -26,16 +26,20 @@ $(document).ready(function(){
   //creat note element
   const create_note_element = function(data){
     let noteElement = $('<form>').text(data.text).addClass('item');
+    //store dataId in the element
+    noteElement.data("data_id", data.note_id);
     let icon = $('<i>').addClass('material-icons').text('check_circle');
     noteElement.prepend(icon);
     return noteElement;
   };
 
+  //when the home screen button is pressed in the nav bar, send user to home screen
   $('.nav-item:nth-child(1)').on('click', function(){
     show_home_screen();
     hide_category_screen();
   });
 
+  //when the werb logo is clicked in the nav bar, send user to home screen
   $('.navbar a.navbar-brand').on('click', function(){
     show_home_screen();
     hide_category_screen();
@@ -80,8 +84,8 @@ $(document).ready(function(){
   //calling data from server
   const renderNotes = function(data){
     $('.saved-item').empty();
-    data.forEach(function(noteData, index){
-      let note = create_note_element(noteData);
+    data.forEach(function(dataElement, index){
+      let note = create_note_element(dataElement);
       $('.saved-item').prepend(note);
     });
   };
