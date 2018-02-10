@@ -48,6 +48,14 @@ $(document).ready(function(){
     hide_home_screen();
   });
 
+  //log user out when the logout button is pressed
+  $('.logout-button').on('click', function(){
+    $.post('/logout').then(function(){
+      //refresh the browser after logout
+      location.reload();
+    });
+  });
+
   $('#watch').on('click', function(){
     category = "watch";
     show_category_screen();
