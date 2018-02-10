@@ -77,11 +77,12 @@ $(document).ready(function(){
     let note_id = $(event.target).parent().data('note_id');
     $.post("/delete", {"note_id": note_id}, function(){
       //refresh the notes
-      loadNotes(renderNotes);
+      loadNotes(renderNotes, category);
     });
   });
 
   const loadNotes = function(callback, category){
+    console.log("category: ", category);
     $.get(`/notes/${category}`, function(data){
       callback(data);
     });

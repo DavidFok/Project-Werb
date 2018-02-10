@@ -49,6 +49,10 @@ module.exports = (dataHelpers) => {
     dataHelpers.postNote(req, res);
   });
 
+  router.post('/delete', (req, res) => {
+    dataHelpers.deleteNote(req, res);
+  });
+
   //reads notes from category and user specified
   router.get("/notes/:category", (req, res) => {
     dataHelpers.readNote(req, res);
