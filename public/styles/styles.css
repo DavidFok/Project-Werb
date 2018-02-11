@@ -8117,10 +8117,11 @@ a.text-dark:hover, a.text-dark:focus {
   background-color: #b7e9d9;
   margin-top: 56px;
   color: whitesmoke;
-  font-size: 40px;
+  font-size: 30px;
   text-align: center;
   display: block;
   position: relative;
+  text-transform: capitalize;
 }
 
 .collapse.navbar-collapse button {
@@ -8141,18 +8142,23 @@ a.text-dark:hover, a.text-dark:focus {
   align-items: center;
 }
 
-.page-add .category-links.buttons.text-center .btn.btn-primary {
-  width: 80px;
-  background-color: #12273c;
-  border-color: #12273c;
+.page-add .btn.btn-primary {
+  background-color: #113559;
+  border-color: #113559;
+  /*background-color: #12273c;
+  border-color: #12273c;*/
   color: white;
+  font-size: 13px;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding: 3px;
 }
 
-.page-add .category-links.buttons.text-center .btn.btn-primary:hover {
-  background-color: white;
-  border-color: black;
+.page-add .btn.btn-primary:hover {
+  background-color: #52b0b7;
+  border-color: #52b0b7;
   color: black;
-  box-shadow: 0px 0px 4px 4px grey;
+  box-shadow: 0px 2px 0px 0px grey;
 }
 
 .saved-item {
