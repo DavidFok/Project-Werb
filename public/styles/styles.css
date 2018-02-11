@@ -8235,7 +8235,7 @@ a.text-dark:hover, a.text-dark:focus {
   position: relative;
 }
 
-.saved-item .material-icons {
+.saved-item .material-icons.delete {
   font-size: 35px;
   position: absolute;
   right: 10px;
@@ -8244,9 +8244,24 @@ a.text-dark:hover, a.text-dark:focus {
   transition: font-size 0.2s ease;
 }
 
-.saved-item .material-icons:hover {
+.saved-item .material-icons.delete:hover {
   color: black;
   font-size: 40px;
+  cursor: pointer;
+}
+
+.saved-item .material-icons.edit {
+  font-size: 28px;
+  position: absolute;
+  right: 45px;
+  top: 3%;
+  color: #484848;
+  transition: font-size 0.2s ease;
+}
+
+.saved-item .material-icons.edit:hover {
+  color: black;
+  font-size: 33px;
   cursor: pointer;
 }
 
@@ -8273,7 +8288,7 @@ a.text-dark:hover, a.text-dark:focus {
   color: #545454;
   background-color: white;
   border-radius: 5px;
-  margin: 40px 5px 5px 5px;
+  margin: 20px 5px 5px 5px;
   padding: 15px;
   font-size: 10px;
   text-align: left;

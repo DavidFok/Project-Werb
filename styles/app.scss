@@ -58,7 +58,6 @@
 .vertical-center {
   min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
   min-height: 80vh; /* These two lines are counted as one :-)       */
-
   display: flex;
   align-items: center;
 }
@@ -129,7 +128,7 @@
   position: relative;
 }
 
-.saved-item .material-icons {
+.saved-item .material-icons.delete {
   font-size: 35px;
   position: absolute;
   right: 10px;
@@ -138,9 +137,24 @@
   transition: font-size 0.2s ease;
 }
 
-.saved-item .material-icons:hover {
+.saved-item .material-icons.delete:hover {
   color: black;
   font-size: 40px;
+  cursor: pointer;
+}
+
+.saved-item .material-icons.edit {
+  font-size: 28px;
+  position: absolute;
+  right: 45px;
+  top: 3%;
+  color: #484848;
+  transition: font-size 0.2s ease;
+}
+
+.saved-item .material-icons.edit:hover {
+  color: black;
+  font-size: 33px;
   cursor: pointer;
 }
 
@@ -168,7 +182,7 @@
   color: #545454;
   background-color: white;
   border-radius: 5px;
-  margin: 40px 5px 5px 5px;
+  margin: 20px 5px 5px 5px;
   padding: 15px;
   font-size: 10px;
   text-align: left;
