@@ -13,63 +13,65 @@
 
 <body id="app">
 
-    <nav class="navbar navbar-dark fixed-top" style="background-color: #1A6F77;">
-        <a class="navbar-brand" href="#">werb</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
+  <nav class="navbar navbar-dark fixed-top" style="background-color: #1A6F77;">
+      <a class="navbar-brand" href="#">werb</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-        <div class="collapse navbar-collapse" id="navbarsExample01">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">HOME</a>
-            <li class="nav-item">
-              <a class="nav-link" href="#">watch</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">eat</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">read</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">buy</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link logout-button">Logout</a>
-              <!-- <form action="/logout" method="POST" id="logout-button">
-                <button class="nav-link" type="submit">Logout</button>
-              </form> -->
-            </li>
-          </ul>
-        </div>
-    </nav>
+      <div class="collapse navbar-collapse" id="navbarsExample01">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+              <a class="nav-link" href="#">HOME</a>
+          <li class="nav-item">
+            <a class="nav-link" href="#">watch</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">eat</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">read</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">buy</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link logout-button">Logout</a>
+            <!-- <form action="/logout" method="POST" id="logout-button">
+              <button class="nav-link" type="submit">Logout</button>
+            </form> -->
+          </li>
+        </ul>
+      </div>
+  </nav>
 
-    <div class="page-add vertical-center">
+  <div class="page-add vertical-center">
     <div class="container">
-      <div class="col-15 align-self-center">
-          <form class="input-group mb-3" action="/note" method="POST">
-              <input name="text" type="text" class="form-control" placeholder="werb" aria-label="Recipient's username" aria-describedby="basic-addon2">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" type="submit">Save</button>
-              </div>
-            </form>
-          </div>
-        <div class="category-links buttons text-center">
-          <a class="btn btn-primary" href="#" role="button" id="watch">Watch</a>
-          <a class="btn btn-primary" href="#" role="button" id="eat">Eat</a>
-          <a class="btn btn-primary" href="#" role="button" id="read">Read</a>
-          <a class="btn btn-primary" href="#" role="button" id="buy">Buy</a>
+      <div class="row justify-content-center">
+        <form class="col-md-8 col-lg-6 col-sm-10 input-group mb-3" action="/note" method="POST">
+            <input name="text" type="text" class="form-control" placeholder="werb" aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <div class="input-group-append">
+              <button class="btn btn-outline-secondary" type="submit">Save</button>
+            </div>
+        </form>
+      </div>
+      <div class="row justify-content-center">
+        <div class="row col-md-8 col-lg-6 col-sm-10">
+          <a class="btn btn-primary col" href="#" role="button" id="watch">Watch</a>
+          <a class="btn btn-primary col" href="#" role="button" id="eat">Eat</a>
+          <a class="btn btn-primary col" href="#" role="button" id="read">Read</a>
+          <a class="btn btn-primary col" href="#" role="button" id="buy">Buy</a>
         </div>
       </div>
     </div>
+  </div>
 
-    <div class="under-nav">
-      <span>WATCH</span>
-    </div>
+  <div class="under-nav">
+    <span>WATCH</span>
+  </div>
 
-    <div class="saved-item">
-    </div>
+  <div class="saved-item">
+  </div>
 
   <footer class="footer">
     <div class="container">

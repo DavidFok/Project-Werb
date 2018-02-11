@@ -10,9 +10,9 @@ $(document).ready(function(){
   };
 
   const show_category_screen = function(){
-    $(".saved-item").show();
-    $(".under-nav").show();
-    $(".under-nav").text(category.toUpperCase());
+    $('.saved-item').show();
+    $('.under-nav').show();
+    $('.under-nav').text(category);
   };
 
   const hide_category_screen = function(){
