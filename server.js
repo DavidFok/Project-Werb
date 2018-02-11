@@ -1,10 +1,10 @@
 "use strict";
 require("dotenv").config();
-const aws = require('aws-sdk');
+// const aws = require('aws-sdk');
 
-let s3 = new aws.S3({
-  cookie_token: process.env.S3_KEY;
-});
+// let s3 = new aws.S3({
+//   cookie_token: process.env.S3_KEY;
+// });
 
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
@@ -22,15 +22,9 @@ const cookieSession = require("cookie-session");
 
 app.use(cookieSession({
   name : "session",
-  keys : s3.cookie_token,
+  keys : [process.env.COOKIE_TOKEN],
   maxAge: 24 * 60 * 60 * 1000
 }));
-
-// app.use(cookieSession({
-//   name : "session",
-//   keys : [process.env.COOKIE_TOKEN],
-//   maxAge: 24 * 60 * 60 * 1000
-// }));
 
 // Separate routes file
 //import functions
