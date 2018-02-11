@@ -22,21 +22,12 @@
       <div class="collapse navbar-collapse" id="navbarsExample01">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-              <a class="nav-link" href="#">home</a>
-          <li class="nav-item">
-            <a class="nav-link" href="#">watch</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">eat</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">read</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">buy</a>
-          </li>
+              <a class="nav-link" href="/app">Home</a>
           <li class="nav-item">
             <a class="nav-link logout-button">Logout</a>
+            <li class="nav-item">
+                <a class="nav-link user">user@user.com</a>
+              </li>
             <!-- <form action="/logout" method="POST" id="logout-button">
               <button class="nav-link" type="submit">Logout</button>
             </form> -->
@@ -48,6 +39,7 @@
   <div class="page-add vertical-center">
     <div class="container">
       <div class="row justify-content-center">
+          <h1 class="tagline">Reduce your life to four categories.</h1>
         <form class="search-form col-md-8 col-lg-6 col-sm-10 input-group mb-3" action="/note" method="POST">
             <input name="text" type="text" class="form-control" placeholder="werb" aria-label="Recipient's username" aria-describedby="basic-addon2">
             <div class="input-group-append">
@@ -67,7 +59,14 @@
   </div>
 
   <div class="under-nav">
-    <span>WATCH</span>
+      <div class="row justify-content-center">
+          <div class="row col-md-8 col-lg-6 col-sm-10">
+            <a class="cat-button col" href="#" role="button" id="watchScrollBar">Watch</a>
+            <a class="cat-button col" href="#" role="button" id="eatScrollBar">Eat</a>
+            <a class="cat-button col" href="#" role="button" id="readScrollBar">Read</a>
+            <a class="cat-button col" href="#" role="button" id="buyScrollBar">Buy</a>
+          </div>
+        </div>
   </div>
 
   <div class="saved-item">
@@ -75,7 +74,7 @@
 
   <footer class="footer">
     <div class="container">
-      <span class="text-muted">About us</span>
+      <span class="text-muted">Developed by: <a href="https://www.linkedin.com/in/david-fok-26029960/">David Fok</a><a> | </a><a href="https://www.linkedin.com/in/tony-ha-a888997b/">Tony Ha</a><a> | </a><a href="https://www.linkedin.com/in/crowntree/">Chris Rowntree</a></span>
     </div>
   </footer>
   <!-- Optional JavaScript -->

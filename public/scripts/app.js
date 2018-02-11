@@ -9,10 +9,17 @@ $(document).ready(function(){
     $(".page-add.vertical-center").hide();
   };
 
+  const removeScrollBorder = function(){
+    $("#watchScrollBar").css("border-color", "white");
+    $("#eatScrollBar").css("border-color", "white");
+    $("#readScrollBar").css("border-color", "white");
+    $("#buyScrollBar").css("border-color", "white");
+  };
+
   const show_category_screen = function(){
     $(".saved-item").show();
     $(".under-nav").show();
-    $(".under-nav").text(category);
+    // $(".under-nav").text(category);
   };
 
   const hide_category_screen = function(){
@@ -28,33 +35,26 @@ $(document).ready(function(){
     noteElement.data("note_id", data.note_id);
     // console.log("Data: ", noteElement.data('note_id'));
     let icon = $("<i>").addClass("material-icons").text("close");
-
     let divExternal = $("<div>").addClass("external");
-
     let anchorTag = $("<a>");
     anchorTag.attr("href", "https://www.themoviedb.org/movie/15-citizen-kane?language=en");
     let imgTag = $("<img>");
     imgTag.attr("src", "http://image.tmdb.org/t/p/w185/sav0jxhqiH0bPr2vZFU0Kjt2nZL.jpg");
     anchorTag.append(imgTag);
     divExternal.append(anchorTag);
-
     let secondColumn = $("<div>");
     let titleSource = $("<div>").addClass("header");
     let title = $("<h5>").addClass("title").text("Citizen Kane");
     let group = $("<div>").addClass("group");
     let source = $("<p>").addClass("source").text("The Movie DB");
     let rating = $("<p>").addClass("source").text("6.5/10");
-
     group.append(source, rating);
     titleSource.append(title, group);
-
     let review = $("<p>").text("Newspaper magnate, Charles Foster Kane is taken from his mother as a boy and made the ward of a rich industrialist. As a result, every well-meaning, tyrannical or self-destructive move he makes for the rest of his life appears in some way to be a reaction to that deeply wounding event.");
-
     secondColumn.append(titleSource, review);
     divExternal.append(secondColumn);
     noteElement.append(icon);
     noteElement.append(divExternal);
-
     return noteElement;
   };
 
@@ -67,6 +67,7 @@ $(document).ready(function(){
   //when the werb logo is clicked in the nav bar, send user to home screen
   $(".navbar a.navbar-brand").on("click", function(){
     show_home_screen();
+    removeScrollBorder();
     hide_category_screen();
   });
 
@@ -84,25 +85,57 @@ $(document).ready(function(){
 
   $("#watch").on("click", function(){
     category = "watch";
+    $("#watchScrollBar").css("border-color", "#ff5a5f");
     show_category_screen();
     loadNotes(renderNotes, category);
   });
 
   $("#eat").on("click", function(){
     category = "eat";
+    $("#eatScrollBar").css("border-color", "#ff5a5f");
     show_category_screen();
     loadNotes(renderNotes, category);
   });
 
   $("#read").on("click", function(){
     category = "read";
+    $("#readScrollBar").css("border-color", "#ff5a5f");
     show_category_screen();
     loadNotes(renderNotes, category);
   });
 
   $("#buy").on("click", function(){
     category = "buy";
+    $("#buyScrollBar").css("border-color", "#ff5a5f");
     show_category_screen();
+    loadNotes(renderNotes, category);
+  });
+
+  $("#watchScrollBar").on("click", function(){
+    category = "watch";
+    removeScrollBorder();
+    $("#watchScrollBar").css("border-color", "#ff5a5f");
+    loadNotes(renderNotes, category);
+  });
+
+  $("#eatScrollBar").on("click", function(){
+    category = "eat";
+    removeScrollBorder();
+    $("#eatScrollBar").css("border-color", "#ff5a5f");
+    loadNotes(renderNotes, category);
+  });
+
+  $("#readScrollBar").on("click", function(){
+    category = "read";
+    removeScrollBorder();
+    $("#readScrollBar").css("border-color", "#ff5a5f");
+    loadNotes(renderNotes, category);
+  });
+
+  $("#buyScrollBar").on("click", function(){
+    category = "buy";
+    removeScrollBorder();
+    $("#buyScrollBar").css("border-color", "#ff5a5f");
     loadNotes(renderNotes, category);
   });
 
