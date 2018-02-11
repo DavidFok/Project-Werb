@@ -12,7 +12,7 @@
   "author": "Lighthouse Labs",
   "license": "ISC",
   "dependencies": {
-    "aws-sdk": "^2.190.0",
+    "aws-sdk": "^2.192.0",
     "bayes": "0.0.7",
     "body-parser": "^1.18.2",
     "bootstrap": "^4.0.0",

@@ -1,5 +1,10 @@
 "use strict";
 require("dotenv").config();
+const aws = require('aws-sdk');
+
+let s3 = new aws.S3({
+  cookie_token: process.env.S3_KEY;
+});
 
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
@@ -14,11 +19,18 @@ const morgan      = require("morgan");
 const knexLogger  = require("knex-logger");
 const cookieSession = require("cookie-session");
 //initializing cookieSession
+
 app.use(cookieSession({
   name : "session",
-  keys : [process.env.COOKIE_TOKEN],
+  keys : s3.cookie_token,
   maxAge: 24 * 60 * 60 * 1000
 }));
+
+// app.use(cookieSession({
+//   name : "session",
+//   keys : [process.env.COOKIE_TOKEN],
+//   maxAge: 24 * 60 * 60 * 1000
+// }));
 
 // Separate routes file
 //import functions
