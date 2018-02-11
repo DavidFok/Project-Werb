@@ -10,9 +10,9 @@ $(document).ready(function(){
   };
 
   const show_category_screen = function(){
-    $('.saved-item').show();
-    $('.under-nav').show();
-    $('.under-nav').text(category);
+    $(".saved-item").show();
+    $(".under-nav").show();
+    $(".under-nav").text(category);
   };
 
   const hide_category_screen = function(){
@@ -27,7 +27,7 @@ $(document).ready(function(){
     //store dataId in the element
     noteElement.data("note_id", data.note_id);
     // console.log("Data: ", noteElement.data('note_id'));
-    let icon = $("<i>").addClass("material-icons").text("check_circle");
+    let icon = $("<i>").addClass("material-icons").text("close");
 
     let divExternal = $("<div>").addClass("external");
 
