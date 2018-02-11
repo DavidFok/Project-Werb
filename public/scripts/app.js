@@ -140,8 +140,8 @@ $(document).ready(function(){
     loadNotes(renderNotes, category);
   });
 
-  //When a checkmark icon is clicked, get store the note_id of the note that was checked.
-  $(".saved-item").on("click", "i", function(event){
+  //When a X icon is clicked, get store the note_id of the note that was checked.
+  $(".saved-item").on("click", ".material-icons.delete", function(event){
     let note_id = $(event.target).parent().data("note_id");
     $.post("/delete", {"note_id": note_id}, function(){
       //refresh the notes
