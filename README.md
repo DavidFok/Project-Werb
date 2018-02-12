@@ -7,8 +7,8 @@ When you are recommended something it's not always easy to jot it down for later
 The solution? A smart, auto-categorizing todo list app. The user simply has to add the name of the thing, and it gets put into the correct list.
 
 ## Screenshots
-!["Screenshot of enter note page"](https://github.com/...)
-!["Screenshot of enter saved notes page"](https://github.com/...)
+!["Screenshot of enter note page"](https://github.com/DavidFok/Project-Werb/blob/master/docs/werb-enter_note.png)
+!["Screenshot of enter saved notes page"](https://github.com/DavidFok/Project-Werb/blob/master/docs/werb-note_page.png)
 
 ## Running the project on your local machine
 
