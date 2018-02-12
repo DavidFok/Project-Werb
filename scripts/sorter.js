@@ -150,7 +150,7 @@ function sorter (input) {
 }
 
 
-function extractEntities (inputText,cb) {
+function extractEntities (inputText) {
   let params = {
     LanguageCode: 'en',
     Text: inputText
@@ -158,14 +158,14 @@ function extractEntities (inputText,cb) {
   comprehend.detectEntities(params, function(err, data) {
     if (err) { console.log(err, err.stack) }
     else {
-      cb(data);
+      console.log("the data is: ", data);
+      return data;
     }
   });
 }
 
 function processResult(result){
   let metadata = JSON.stringify(result);
-  console.log(metadata);
   return metadata;
 }
 
