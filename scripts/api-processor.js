@@ -7,7 +7,8 @@ const client = yelp.client(apiKey);
 
 function processMetadata (metadata, category, text, noteId, cb) {
   // Catch absent metadata from AWS
-  if (metadata == undefined) {
+  console.log("metadata.Entities: ", metadata);
+  if (metadata == undefined || metadata.Entities === undefined) {
     if (category === 'watch') return toMovieDB(text, youtube.process, noteId, cb);
     if (category === 'eat') return toYelp(text, noteId, cb);
   };
@@ -44,6 +45,9 @@ function processMetadata (metadata, category, text, noteId, cb) {
   if (category === "eat") {
     if (metaTypes.includes("ORGANIZATION")) {
       let idx = metaTypes.indexOf("ORGANIZATION");
+      toYelp(metaText[idx].toString(), noteId, cb);
+    } else if (metaTypes.includes("PERSON")) {
+      let idx = metaTypes.indexOf("PERSON");
       toYelp(metaText[idx].toString(), noteId, cb);
     } else if (metaTypes.includes("QUANTITY") || metaTypes.includes("DATE")) {
       toYelp(text, noteId, cb);
