@@ -159,7 +159,6 @@ function extractEntities (inputText) {
     comprehend.detectEntities(params, function(err, data) {
       if (err) { console.log(err, err.stack) }
       else {
-        console.log("the data is: ", data);
         resolve(data);
       }
     });

@@ -27,27 +27,26 @@ var youtubeMetadataJSON = '{"Entities":[{"Score":0.9832693338394165,"Type":"ORGA
 // metadata.process('{"Entities":[{"Score":0.9834399223327637,"Type":"TITLE","Text":"Citizen Kane","BeginOffset":15,"EndOffset":27}]}', 'watch');
 
 // test multiple entities && for youtube
-metadata.process(null, 'watch', 'Pretty Woman', (err, classification) => {
-  // console.log(data);
-  // res.json(data);
-  if (err) {
-    console.log("fucking classifier is SO FUCKING BROKEN", err);
-    // res.status(500).send("oh fuck oh fuck oh fuck oh fuck I AM ON FIRE!");
-  } else {
-    let classifiedJSONstr = JSON.stringify(classification);
-    // insertIntoDatabase(rawData, classification, (db_result) => {
-    //   res.render('index.ejs');
-    // })
-    console.log("successful classification:", classifiedJSONstr);
-    return classifiedJSONstr;
-  }
-});
+// metadata.process(null, 'watch', 'Pretty Woman', (err, classification) => {
+//   // console.log(data);
+//   // res.json(data);
+//   if (err) {
+//     console.log("fucking classifier is SO FUCKING BROKEN", err);
+//     // res.status(500).send("oh fuck oh fuck oh fuck oh fuck I AM ON FIRE!");
+//   } else {
+//     let classifiedJSONstr = JSON.stringify(classification);
+//     // insertIntoDatabase(rawData, classification, (db_result) => {
+//     //   res.render('index.ejs');
+//     // })
+//     console.log("successful classification:", classifiedJSONstr);
+//     return classifiedJSONstr;
+//   }
+// });
 
-// test for eat
 // metadata.process('{"Entities":[{"Score":0.7616552710533142,"Type":"QUANTITY","Text":"5 Guys","BeginOffset":16,"EndOffset":22}]}', 'eat');
 
 // test no entities
-// console.log(metadata.process(undefined, 'watch', 'i like cats'));
+console.log(metadata.process(youtubeMetadataJSON, 'watch', 'find youtube video from Stephen Colbert', 78));
 
 
 

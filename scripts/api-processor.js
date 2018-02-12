@@ -1,18 +1,15 @@
 const http = require("https");
 const youtube = require("./youtube-api");
 const yelp = require('yelp-fusion');
-require("dotenv").config({path: '../.env'});
 
 const apiKey = process.env.API_KEY;
 const client = yelp.client(apiKey);
 
-function processMetadata (metadata, category, text, cb) {
+function processMetadata (metadata, category, text, noteId, cb) {
   // Catch absent metadata from AWS
   if (metadata == undefined) {
-    if (category === 'watch') return toMovieDB(text, youtube.process, cb);
-    if (category === 'eat') return toYelp(text, cb);
-    if (category === 'read') return toLibrary(text, cb);
-    if (category === 'buy') return toAmazon(text, cb);
+    if (category === 'watch') return toMovieDB(text, youtube.process, noteId, cb);
+    if (category === 'eat') return toYelp(text, noteId, cb);
   };
 
   let data = JSON.parse(metadata).Entities;
@@ -40,23 +37,23 @@ function processMetadata (metadata, category, text, cb) {
     let searchInput = metaText.toString().split(",").join(" ");
 
 
-    if (checkForYT === false) toMovieDB(searchInput, youtube.process, cb);
-    if (checkForYT === true) youtube.process(searchInput, cb);
+    if (checkForYT === false) toMovieDB(searchInput, youtube.process, noteId, cb);
+    if (checkForYT === true) youtube.process(searchInput, noteId, cb);
   }
   // for eat log ===>>> send to Yelp for info
   if (category === "eat") {
     if (metaTypes.includes("ORGANIZATION")) {
       let idx = metaTypes.indexOf("ORGANIZATION");
-      toYelp(metaText[idx].toString(), cb);
+      toYelp(metaText[idx].toString(), noteId, cb);
     } else if (metaTypes.includes("QUANTITY") || metaTypes.includes("DATE")) {
-      toYelp(text, cb);
+      toYelp(text, noteId, cb);
     }
     // console.log(metaText);
   }
 }
 
 
-function toMovieDB (searchText, fallbackPlan, finalCB) {
+function toMovieDB (searchText, fallbackPlan, noteId, finalCB) {
   let title = searchText.replace(/ /g, "%20");
   var options = {
     "method": "GET",
@@ -72,11 +69,12 @@ function toMovieDB (searchText, fallbackPlan, finalCB) {
     });
     res.on("end", function () {
       var body = Buffer.concat(chunks);
-      var resStr = JSON.parse(body.toString());
+      var resStr = JSON.parse(body);
+      var shortStr = resStr.results[0];
       if (resStr.total_results === 0) {
-        fallbackPlan(searchText, finalCB);
+        fallbackPlan(searchText, noteId, finalCB);
       } else {
-        finalCB(null, resStr);
+        finalCB(null, shortStr, noteId);
       }
     });
   });
@@ -84,13 +82,13 @@ function toMovieDB (searchText, fallbackPlan, finalCB) {
   req.end();
 }
 
-function toYelp (searchText) {
+function toYelp (searchText, noteId, cb) {
   client.search({
     term: searchText,
     location: 'vancouver, bc'
   })
   .then(response => {
-    cb(undefined, response.jsonBody.businesses[0].name);
+    cb(undefined, response.jsonBody.businesses[0], noteId);
   })
   .catch(cb);
 }
