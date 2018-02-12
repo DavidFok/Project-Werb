@@ -8327,6 +8327,88 @@ a.text-dark:hover, a.text-dark:focus {
   float: right;
 }
 
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 1;
+}
+
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 200px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 20%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.popup .material-icons {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #484848;
+  transition: font-size 0.2s ease;
+}
+
+.popup .material-icons:hover {
+  color: black;
+  font-size: 35px;
+  cursor: pointer;
+}
+
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+}
+
+.popup h4 {
+  color: #484848;
+  margin-bottom: 20px;
+}
+
+.popup label {
+  padding-left: 15px;
+}
+
+.popup button {
+  background-color: #FF5A5F;
+  cursor: pointer;
+  border: 1px solid #FF5A5F;
+  color: white;
+  border-radius: 5px;
+  float: right;
+  padding: 3px 15px;
+}
+
+@media screen and (max-width: 700px) {
+  .popup {
+    width: 70%;
+  }
+}
+
 #login .navbar {
   position: fixed;
   top: 0;

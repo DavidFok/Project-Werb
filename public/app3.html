@@ -47,9 +47,35 @@
         <span>WATCH</span>
     </div>
 
+    <!-- Edit category modal -->
+    <div class="overlay" id="popup1">
+        <div class="popup">
+          <h4>Edit category</h4><a class="material-icons" href="#">close</a>
+          <form class="content">
+            <div>
+              <div style="margin-left: 2em">
+                <input id="categoryChoice1" name="category" type="radio" value="text"> <label for="categoryChoice1">Watch</label>
+              </div>
+              <div style="margin-left: 2em">
+                <input id="categoryChoice2" name="category" type="radio" value="text"> <label for="categoryChoice2">Eat</label>
+              </div>
+              <div style="margin-left: 2em">
+                <input id="categoryChoice3" name="category" type="radio" value="text"> <label for="categoryChoice3">Read</label>
+              </div>
+              <div style="margin-left: 2em">
+                <input id="categoryChoice4" name="category" type="radio" value="text"> <label for="categoryChoice4">Buy</label>
+              </div>
+            </div>
+            <div>
+              <button type="submit">Save</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
     <div class="saved-item">
         <form class="item">
-          <i class="material-icons">check_circle</i>
+          <a class="button" href="#popup1"><i class="material-icons edit">check_circle</i></a>
           <div>I want to watch Citizen Kane</div>
           <div class="external">
           <a href="https://www.themoviedb.org/movie/15-citizen-kane?language=en"><img src="http://image.tmdb.org/t/p/w185/sav0jxhqiH0bPr2vZFU0Kjt2nZL.jpg" alt="source: MovieDB"></a>

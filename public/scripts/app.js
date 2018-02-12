@@ -35,7 +35,9 @@ $(document).ready(function(){
     noteElement.data("note_id", data.note_id);
     // console.log("Data: ", noteElement.data('note_id'));
     let icon = $("<i>").addClass("material-icons delete").text("close");
+    let editModal = $("<a>").addClass("button").attr("href", "#popup1");
     let editIcon = $("<i>").addClass("material-icons edit").text("mode_edit");
+    editModal.append(editIcon);
     let divExternal = $("<div>").addClass("external");
     let anchorTag = $("<a>");
     anchorTag.attr("href", "https://www.themoviedb.org/movie/15-citizen-kane?language=en");
@@ -54,7 +56,7 @@ $(document).ready(function(){
     let review = $("<p>").text("Newspaper magnate, Charles Foster Kane is taken from his mother as a boy and made the ward of a rich industrialist. As a result, every well-meaning, tyrannical or self-destructive move he makes for the rest of his life appears in some way to be a reaction to that deeply wounding event.");
     secondColumn.append(titleSource, review);
     divExternal.append(secondColumn);
-    noteElement.append(icon, editIcon);
+    noteElement.append(icon, editModal);
     noteElement.append(divExternal);
     return noteElement;
   };

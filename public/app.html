@@ -16,6 +16,32 @@
 
 <body id="app">
 
+  <!-- Edit category modal -->
+  <div class="overlay" id="popup1">
+      <div class="popup">
+        <h4>Edit category</h4><a class="material-icons" href="#">close</a>
+        <form class="content">
+          <div>
+            <div style="margin-left: 2em">
+              <input id="categoryChoice1" name="category" type="radio" value="text"> <label for="categoryChoice1">Watch</label>
+            </div>
+            <div style="margin-left: 2em">
+              <input id="categoryChoice2" name="category" type="radio" value="text"> <label for="categoryChoice2">Eat</label>
+            </div>
+            <div style="margin-left: 2em">
+              <input id="categoryChoice3" name="category" type="radio" value="text"> <label for="categoryChoice3">Read</label>
+            </div>
+            <div style="margin-left: 2em">
+              <input id="categoryChoice4" name="category" type="radio" value="text"> <label for="categoryChoice4">Buy</label>
+            </div>
+          </div>
+          <div>
+            <button type="submit">Save</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
   <nav class="navbar navbar-light fixed-top" style="background-color: rgba(255,255,255,1);">
       <a class="navbar-brand" href="#">werb</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
