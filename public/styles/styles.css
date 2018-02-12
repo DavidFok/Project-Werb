@@ -8352,7 +8352,6 @@ a.text-dark:hover, a.text-dark:focus {
   border-radius: 5px;
   width: 20%;
   position: relative;
-  transition: all 5s ease-in-out;
 }
 
 .popup h2 {
