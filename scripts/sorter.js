@@ -155,25 +155,21 @@ function extractEntities (inputText) {
     LanguageCode: 'en',
     Text: inputText
   };
-  comprehend.detectEntities(params, function(err, data) {
-    if (err) { console.log(err, err.stack) }
-    else {
-      console.log("the data is: ", data);
-      return data;
-    }
+  return new Promise(function(resolve, reject) {
+    comprehend.detectEntities(params, function(err, data) {
+      if (err) { console.log(err, err.stack) }
+      else {
+        console.log("the data is: ", data);
+        resolve(data);
+      }
+    });
   });
-}
-
-function processResult(result){
-  let metadata = JSON.stringify(result);
-  return metadata;
 }
 
 
 module.exports = {
   entry: sorter,
-  entity: extractEntities,
-  processResult: processResult
+  entity: extractEntities
 };
 // watch keywords - watch, see, movie, film, tv, show, video, documentary
 
