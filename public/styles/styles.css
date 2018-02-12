@@ -8489,7 +8489,7 @@ a.text-dark:hover, a.text-dark:focus {
 
 #login .btn-primary {
   border-color: transparent;
-  background: linear-gradient(45deg, #FF666B, #FF5A5F);
+  background: linear-gradient(#FF666B, #FF5A5F);
 }
 
 #register .navbar {
@@ -8569,5 +8569,5 @@ a.text-dark:hover, a.text-dark:focus {
 
 #register .btn-primary {
   border-color: transparent;
-  background: linear-gradient(45deg, #FF666B, #FF5A5F);
+  background: linear-gradient(#FF666B, #FF5A5F);
 }
