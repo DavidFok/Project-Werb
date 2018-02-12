@@ -1,11 +1,5 @@
-//dummy change.
 "use strict";
-// require("dotenv").config();
-// const aws = require('aws-sdk');
-
-// let s3 = new aws.S3({
-//   cookie_token: process.env.S3_KEY;
-// });
+require("dotenv").config();
 
 const PORT        = process.env.PORT || 8080;
 const ENV         = process.env.ENV || "development";
