@@ -2,11 +2,12 @@ $(document).ready(function(){
   let category;
 
   const show_home_screen = function(){
-    $(".page-add.vertical-center").show();
+    $(".page-add.vertical-center").fadeIn(500);
+    $(".form-control").focus().select();
   };
 
   const hide_home_screen = function(){
-    $(".page-add.vertical-center").hide();
+    $(".page-add.vertical-center").fadeOut(300);
   };
 
   const removeScrollBorder = function(){
@@ -17,8 +18,8 @@ $(document).ready(function(){
   };
 
   const show_category_screen = function(){
-    $(".saved-item").show();
-    $(".under-nav").show();
+    $(".saved-item").fadeIn(300);
+    $(".under-nav").fadeIn(300);
     // $(".under-nav").text(category);
   };
 
@@ -38,7 +39,7 @@ $(document).ready(function(){
     // console.log("Data: ", noteElement.data('note_id'));
     let icon = $("<i>").addClass("material-icons delete").text("close");
     let editModal = $("<a>").addClass("button").attr("href", "#popup1");
-    let editIcon = $("<i>").addClass("material-icons edit").text("mode_edit");
+    let editIcon = $("<i>").addClass("material-icons edit").text("mode_edit").attr("id", "editBtn");
     editModal.append(editIcon);
     let divExternal = $("<div>").addClass("external");
     let anchorTag = $("<a>");
