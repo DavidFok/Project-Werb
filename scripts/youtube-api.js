@@ -1,9 +1,10 @@
-function youtubeAPI (searchQuery, cb) {
+function youtubeAPI (searchQuery, noteId, cb) {
   const fs = require('fs');
   const readline = require('readline');
   const google = require('googleapis');
   const {GoogleAuth} = require('google-auth-library');
   const gal = require('google-auth-library');
+  const path = require('path');
 
   // If modifying these scopes, delete your previously saved credentials
   // at ~/.credentials/google-apis-nodejs-quickstart.json
@@ -14,7 +15,7 @@ function youtubeAPI (searchQuery, cb) {
 
 
   // Load client secrets from a local file.
-  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+  fs.readFile(path.resolve(__dirname, 'client_secret.json'), function processClientSecrets(err, content) {
     if (err) {
       console.log('Error loading client secret file: ' + err);
       return;
@@ -25,7 +26,6 @@ function youtubeAPI (searchQuery, cb) {
                    'part': 'snippet',
                    'q': searchQuery,
                    'type': ''}}, searchListByKeyword);
-
   });
 
   /**
@@ -169,7 +169,7 @@ function youtubeAPI (searchQuery, cb) {
         cb(err);
       } else {
         let YTMeta = response.data.items[0];
-        cb(undefined, YTMeta);
+        cb(undefined, YTMeta, noteId);
       }
     });
   }

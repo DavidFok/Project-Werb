@@ -30,6 +30,8 @@ $(document).ready(function(){
 
   //create note element
   const create_note_element = function(data){
+    let parsedData = JSON.parse(data.processed_metadata);
+    // console.log("photo is: ", data.processed_metadata);
     let noteElement = $("<form>").text(data.text).addClass("item");
     //store dataId in the element
     noteElement.data("note_id", data.note_id);
@@ -40,20 +42,116 @@ $(document).ready(function(){
     editModal.append(editIcon);
     let divExternal = $("<div>").addClass("external");
     let anchorTag = $("<a>");
-    anchorTag.attr("href", "https://www.themoviedb.org/movie/15-citizen-kane?language=en");
     let imgTag = $("<img>");
-    imgTag.attr("src", "http://image.tmdb.org/t/p/w185/sav0jxhqiH0bPr2vZFU0Kjt2nZL.jpg");
+    imgTag.attr("src", `http://image.tmdb.org/t/p/w185/${parsedData.poster_path}`);
     anchorTag.append(imgTag);
     divExternal.append(anchorTag);
     let secondColumn = $("<div>");
     let titleSource = $("<div>").addClass("header");
-    let title = $("<h5>").addClass("title").text("Citizen Kane or a longer title");
+    let title = $("<h5>").addClass("title").text(parsedData.title);
     let group = $("<div>").addClass("group");
     let source = $("<p>").addClass("source").text("The Movie DB");
-    let rating = $("<p>").addClass("source").text("6.5/10");
+    let rating = $("<p>").addClass("source").text(`${parsedData.vote_average} /10`);
     group.append(source, rating);
     titleSource.append(title, group);
-    let review = $("<p>").text("Newspaper magnate, Charles Foster Kane is taken from his mother as a boy and made the ward of a rich industrialist. As a result, every well-meaning, tyrannical or self-destructive move he makes for the rest of his life appears in some way to be a reaction to that deeply wounding event.");
+    let review = $("<p>").text(parsedData.overview);
+    secondColumn.append(titleSource, review);
+    divExternal.append(secondColumn);
+    noteElement.append(icon, editModal);
+    noteElement.append(divExternal);
+    return noteElement;
+  };
+
+  const create_note_eat = function(data){
+    let parsedData = JSON.parse(data.processed_metadata);
+    let noteElement = $("<form>").text(data.text).addClass("item");
+    //store dataId in the element
+    noteElement.data("note_id", data.note_id);
+    // console.log("Data: ", noteElement.data('note_id'));
+    let icon = $("<i>").addClass("material-icons delete").text("close");
+    let editIcon = $("<i>").addClass("material-icons edit").text("mode_edit");
+    let divExternal = $("<div>").addClass("external");
+    let anchorTag = $("<a>");
+    let imgTag = $("<img>");
+    imgTag.attr("src", parsedData.image_url);
+    anchorTag.append(imgTag);
+    divExternal.append(anchorTag);
+    let secondColumn = $("<div>");
+    let titleSource = $("<div>").addClass("header");
+    let title = $("<h5>").addClass("title").text(parsedData.name);
+    let group = $("<div>").addClass("group");
+    let source = $("<p>").addClass("source").text("Yelp");
+    let rating = $("<p>").addClass("source").text(`${parsedData.rating} /5`);
+    group.append(source, rating);
+    titleSource.append(title, group);
+    // let review = $("<p>").text(parsedData.location.display_address[0]).html("<br/>").text(parsedData.location.display_address[1]);
+    let review = $("<p>").text(parsedData.location.display_address[0]).css({'margin-top': '2px', 'margin-bottom': '2px'});
+    let review2 = $("<p>").text(parsedData.location.display_address[1]).css({'margin-top': '2px', 'margin-bottom': '2px'});
+    let review3 = $("<p>").text(parsedData.location.display_address[2]).css({'margin-top': '2px', 'margin-bottom': '2px'});
+    secondColumn.css({"width": "100%"});
+    secondColumn.append(titleSource, review, review2, review3);
+    divExternal.append(secondColumn);
+    noteElement.append(icon, editIcon);
+    noteElement.append(divExternal);
+    return noteElement;
+  };
+    //create note element
+  const create_note_read = function(data){
+    let noteElement = $("<form>").text(data.text).addClass("item");
+    //store dataId in the element
+    noteElement.data("note_id", data.note_id);
+    // console.log("Data: ", noteElement.data('note_id'));
+    let icon = $("<i>").addClass("material-icons delete").text("close");
+    let editModal = $("<a>").addClass("button").attr("href", "#popup1");
+    let editIcon = $("<i>").addClass("material-icons edit").text("mode_edit").attr("id", "editBtn");
+    editModal.append(editIcon);
+    let divExternal = $("<div>").addClass("external");
+    let anchorTag = $("<a>");
+    let imgTag = $("<img>");
+    imgTag.attr("src", "https://images-na.ssl-images-amazon.com/images/I/51AEI3isFiL.jpg");
+    anchorTag.append(imgTag);
+    divExternal.append(anchorTag);
+    let secondColumn = $("<div>");
+    let titleSource = $("<div>").addClass("header");
+    let title = $("<h5>").addClass("title").text("FIRE AND FURY");
+    let group = $("<div>").addClass("group");
+    let source = $("<p>").addClass("source").text("Amazon");
+    let rating = $("<p>").addClass("source").text("4/5");
+    group.append(source, rating);
+    titleSource.append(title, group);
+    let review = $("<p>").text("With extraordinary access to the West Wing, Michael Wolff reveals what happened behind-the-scenes in the first nine months of the most controversial presidency of our time in Fire and Fury: Inside the Trump White House.");
+    secondColumn.append(titleSource, review);
+    divExternal.append(secondColumn);
+    noteElement.append(icon, editModal);
+    noteElement.append(divExternal);
+    return noteElement;
+  };
+
+    //create note element
+  const create_note_buy = function(data){
+    let noteElement = $("<form>").text(data.text).addClass("item");
+    //store dataId in the element
+    noteElement.data("note_id", data.note_id);
+    // console.log("Data: ", noteElement.data('note_id'));
+    let icon = $("<i>").addClass("material-icons delete").text("close");
+    let editModal = $("<a>").addClass("button").attr("href", "#popup1");
+    let editIcon = $("<i>").addClass("material-icons edit").text("mode_edit").attr("id", "editBtn");
+    editModal.append(editIcon);
+    let divExternal = $("<div>").addClass("external");
+    let anchorTag = $("<a>");
+    let imgTag = $("<img>");
+    imgTag.attr("src", "https://images-na.ssl-images-amazon.com/images/I/81Gbb9J14xL._SL1500_.jpg");
+    anchorTag.append(imgTag);
+    divExternal.append(anchorTag);
+    let secondColumn = $("<div>");
+    let titleSource = $("<div>").addClass("header");
+    let title = $("<h5>").addClass("title").text("Donald Trump Doll");
+    let group = $("<div>").addClass("group");
+    let source = $("<p>").addClass("source").text("amazon.com");
+    let rating = $("<p>").addClass("source").text("2.0/5");
+    group.append(source, rating);
+    titleSource.append(title, group);
+    let review = $("<p>").text(`Donald Trump "Bobbling Middle Finger" Doll is available for a limited time only. Get yours today, while you still can! Proudly display this bobblehead inspired figurine on your desk and help "Make America Great Again." The deplorables have spoken, it's time to put America First again! Show that you are on board the Trump train celebrating the victory of Donald Trump 45th president and Mike Pence vice-president.`);
     secondColumn.append(titleSource, review);
     divExternal.append(secondColumn);
     noteElement.append(icon, editModal);
@@ -162,8 +260,21 @@ $(document).ready(function(){
   const renderNotes = function(data){
     $(".saved-item").empty();
     data.forEach(function(dataElement, index){
-      let note = create_note_element(dataElement);
-      $(".saved-item").prepend(note);
+      if(category === 'watch') {
+        console.log("create is: ", create_note_element);
+        let note = create_note_element(dataElement);
+        $(".saved-item").prepend(note);
+      } else if(category === 'eat') {
+                console.log('2');
+        let note = create_note_eat(dataElement);
+        $(".saved-item").prepend(note);
+      } else if (category === 'read') {
+        let note = create_note_read(dataElement);
+        $(".saved-item").prepend(note);
+      } else {
+        let note = create_note_buy(dataElement);
+        $(".saved-item").prepend(note);
+      }
     });
   };
 
