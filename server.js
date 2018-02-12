@@ -1,6 +1,6 @@
 //dummy change.
 "use strict";
-require("dotenv").config();
+// require("dotenv").config();
 // const aws = require('aws-sdk');
 
 // let s3 = new aws.S3({
