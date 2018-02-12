@@ -29,6 +29,14 @@ $(document).ready(function(){
     $(".under-nav").hide();
   };
 
+  //gets email of user from server
+  const user_email_indicate = function(){
+    $.get('/email', function(data){
+      //change email icon to indicate the user's email
+      $('a.nav-link.user').text(data);
+    });
+  };
+
   //create note element
   const create_note_element = function(data){
     let parsedData = JSON.parse(data.processed_metadata);
@@ -280,6 +288,7 @@ $(document).ready(function(){
   };
 
   //hide category screen;
+  user_email_indicate();
   hide_category_screen();
   loadNotes(renderNotes);
 });
