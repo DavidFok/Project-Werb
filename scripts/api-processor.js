@@ -7,13 +7,12 @@ const client = yelp.client(apiKey);
 
 function processMetadata (metadata, category, text, noteId, cb) {
   // Catch absent metadata from AWS
-  console.log("metadata.Entities: ", metadata);
-  if (metadata == undefined || metadata.Entities === undefined) {
+  let data = JSON.parse(metadata).Entities;
+  if (metadata === undefined || data === undefined) {
     if (category === 'watch') return toMovieDB(text, youtube.process, noteId, cb);
     if (category === 'eat') return toYelp(text, noteId, cb);
   };
 
-  let data = JSON.parse(metadata).Entities;
   let metaText = [];
   for(let entity in data) {
     metaText.push(data[entity].Text);
@@ -34,6 +33,7 @@ function processMetadata (metadata, category, text, noteId, cb) {
         // remove "youtube" from search query
         metaText.splice(idx, 1)
       }
+      console.log("checkForYT is: ", checkForYT);
     })
     let searchInput = metaText.toString().split(",").join(" ");
 
