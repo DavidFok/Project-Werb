@@ -1,9 +1,15 @@
 "use strict";
+// USE FOR LOCAL, COMMENT OUT FOR HEROKU
 // require("dotenv").config();
 
 const PORT        = process.env.PORT || 8080;
+
+//USE FOR LOCAL ENVIRONMENT
 // const ENV         = process.env.ENV || "development";
+
+//USE FOR HEROKU
 const ENV = process.env.NODE_ENV || 'development';
+
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");
