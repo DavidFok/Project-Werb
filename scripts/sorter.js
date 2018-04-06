@@ -170,10 +170,3 @@ module.exports = {
   entry: sorter,
   entity: extractEntities
 };
-// watch keywords - watch, see, movie, film, tv, show, video, documentary
-
-// Eat keywords - eat, yummy, restaurant, food, dinner, lunch, cafe
-
-// Read keywords - read, book, magazine, article, novel, journal, writing, author
-
-// Buy keywords - buy, get, purchase, wtb, store, centre, amazon
