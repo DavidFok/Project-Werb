@@ -1,14 +1,15 @@
-//dummy change.
 "use strict";
+// USE FOR LOCAL, COMMENT OUT FOR HEROKU
 require("dotenv").config();
-// const aws = require('aws-sdk');
-
-// let s3 = new aws.S3({
-//   cookie_token: process.env.S3_KEY;
-// });
 
 const PORT        = process.env.PORT || 8080;
+
+//USE FOR LOCAL ENVIRONMENT
 const ENV         = process.env.ENV || "development";
+
+//USE FOR HEROKU
+// const ENV = process.env.NODE_ENV || 'development';
+
 const express     = require("express");
 const bodyParser  = require("body-parser");
 const sass        = require("node-sass-middleware");

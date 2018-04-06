@@ -20,6 +20,11 @@ module.exports = (dataHelpers) => {
     res.sendFile(path.resolve('./public/testForm.html'));
   });
 
+  //send email back to client
+  router.get('/email', (req, res) => {
+    dataHelpers.userEmail(req, res);
+  });
+
   //logs user to table 'users'
   router.post("/register", (req, res) => {
     dataHelpers.registerUser(req, res);
