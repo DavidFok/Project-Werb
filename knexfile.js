@@ -1,5 +1,5 @@
 // USE FOR LOCAL, COMMENT OUT FOR HEROKU
-// require('dotenv').config();
+require('dotenv').config();
 
 module.exports = {
 
