@@ -18,10 +18,14 @@ module.exports = function toMovieDB (searchText, fallbackPlan, noteId, finalCB) 
         let body = Buffer.concat(chunks);
         let resStr = JSON.parse(body);
         let shortStr = resStr.results[0];
+        let results = {
+          data: shortStr,
+          subtype: "movieDB"
+        };
         if (resStr.total_results === 0) {
           fallbackPlan(searchText, noteId, finalCB);
         } else {
-          finalCB(null, shortStr, noteId);
+          finalCB(null, results, noteId);
         }
       });
     });
