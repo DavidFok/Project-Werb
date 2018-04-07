@@ -10,7 +10,11 @@ module.exports = function (searchText, noteId, cb) {
       location: 'vancouver, bc'
     })
     .then(response => {
-      cb(undefined, response.jsonBody.businesses[0], noteId);
+      let dataVehicle = {
+        data: response.jsonBody.businesses[0],
+        subtype: "yelp"
+      };
+      cb(undefined, dataVehicle, noteId);
     })
     .catch(cb);
 }

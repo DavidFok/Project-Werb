@@ -270,24 +270,28 @@ $(document).ready(function(){
     $(".saved-item").empty();
     data.forEach(function(dataElement, index){
       const subtype = dataElement.subtype;
-      if(category === 'watch') {
-        console.log("subtype is: ", subtype);
-        console.log("dataElement is ", dataElement);
-        console.log("type of dataElement: ", typeof dataElement);
-        console.log("create is: ", create_note_element);
-        let note = create_note_element(dataElement);
-        $(".saved-item").prepend(note);
-      } else if(category === 'eat') {
-                console.log('2');
-        let note = create_note_eat(dataElement);
-        $(".saved-item").prepend(note);
-      } else if (category === 'read') {
-        let note = create_note_read(dataElement);
-        $(".saved-item").prepend(note);
-      } else {
-        let note = create_note_buy(dataElement);
-        $(".saved-item").prepend(note);
+      let note;
+      switch(category) {
+        case 'watch':
+          console.log("subtype is: ", subtype);
+          console.log("create is: ", create_note_element);
+          note = create_note_element(dataElement);
+          break;
+
+        case 'eat':
+          console.log("subtype is: ", subtype);
+          note = create_note_eat(dataElement);
+          break;
+
+        case 'read':
+          note = create_note_read(dataElement);
+          break;
+
+        case 'buy':
+          note = create_note_buy(dataElement);
+          break;
       }
+      $(".saved-item").prepend(note);
     });
   };
 
