@@ -1,13 +1,14 @@
 
 exports.up = function(knex, Promise) {
   return knex.schema.table('notes', function(table){
-    //Add metadata field to notes table
-    table.text('processed_metadata');
+    // Add subtype fields to notes table
+    table.text('subtype');
   });
 };
 
 exports.down = function(knex, Promise) {
   return knex.schema.table('notes', function(table){
-    table.dropColumn('processed_metadata');
+    // Remove subtype fields from notes table
+    table.dropColumn('subtype');
   });
 };
