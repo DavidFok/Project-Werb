@@ -168,7 +168,10 @@ function youtubeAPI (searchQuery, noteId, cb) {
       if (err) {
         cb(err);
       } else {
-        let YTMeta = response.data.items[0];
+        let YTMeta = {
+          data: response.data.items[0],
+          subtype: 'youtube-api.js'
+        };
         cb(undefined, YTMeta, noteId);
       }
     });
