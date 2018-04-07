@@ -170,7 +170,7 @@ function youtubeAPI (searchQuery, noteId, cb) {
       } else {
         let YTMeta = {
           data: response.data.items[0],
-          subtype: 'youtube-api.js'
+          subtype: 'youtube'
         };
         cb(undefined, YTMeta, noteId);
       }

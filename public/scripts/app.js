@@ -269,7 +269,11 @@ $(document).ready(function(){
   const renderNotes = function(data){
     $(".saved-item").empty();
     data.forEach(function(dataElement, index){
+      const subtype = dataElement.subtype;
       if(category === 'watch') {
+        console.log("subtype is: ", subtype);
+        console.log("dataElement is ", dataElement);
+        console.log("type of dataElement: ", typeof dataElement);
         console.log("create is: ", create_note_element);
         let note = create_note_element(dataElement);
         $(".saved-item").prepend(note);
